@@ -10,27 +10,43 @@ const Header = () => {
   return (
     <header className='sticky top-0 z-50 w-full border-b border-gray-primary'>
       <div className='container flex items-center justify-between py-8'>
-        <Link href='/'>
-          <Image
-            src='/logo.png'
-            alt='Stockix logo'
-            width={140}
-            height={32}
-            className='h-8 w-auto cursor-pointer'
-          />
-        </Link>
-        <nav className='hidden md:block'>
-          <NavItems />
-        </nav>
-        <Search />
-        {isSignedIn ? (
-          <Dropdown />
-        ) : (
-          <div className='flex items-center gap-4'>
-            <p>Login</p>
-            <p>Sign Up</p>
+        <div className='flex items-center lg:gap-32 md:gap-16'>
+          <Link href='/'>
+            <Image
+              src='/logo.png'
+              alt='Stockix logo'
+              width={140}
+              height={32}
+              className='h-8 w-auto cursor-pointer'
+            />
+          </Link>
+          <nav className='hidden md:block'>
+            <NavItems />
+          </nav>
+        </div>
+        <div className='flex items-center gap-6'>
+          <div className='flex items-center border-r border-gray-primary pr-2.5 '>
+            <Search />
           </div>
-        )}
+          {isSignedIn ? (
+            <Dropdown />
+          ) : (
+            <div className='flex items-center gap-4'>
+              <Link
+                href='/login'
+                className='hover:text-blue-primary transition-colors'
+              >
+                <p>Login</p>
+              </Link>
+              <Link
+                href='/signup'
+                className='hover:text-blue-primary transition-colors'
+              >
+                <p>Sign Up</p>
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
