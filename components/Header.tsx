@@ -33,13 +33,13 @@ const Header = () => {
           ) : (
             <div className='flex items-center gap-4'>
               <Link
-                href='/login'
+                href='/sign-in'
                 className='hover:text-blue-primary transition-colors'
               >
                 <p>Login</p>
               </Link>
               <Link
-                href='/signup'
+                href='/sign-up'
                 className='hover:text-blue-primary transition-colors'
               >
                 <p>Sign Up</p>
