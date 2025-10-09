@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -112,6 +112,16 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+/* Custom Colours */
+
+@theme {
+  --color-blue-primary: #5771ff;
+  --color-gray-primary: #565656;
+  --color-gray-bg: #1e1e20;
+  --color-green-primary: #2c8654;
+  --color-black-bg: #111111;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -119,4 +129,31 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer utilities {
+  .container {
+    @apply mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .form-title {
+    @apply text-4xl font-bold text-gray-primary mb-10;
+  }
+
+  .form-lablel {
+    @apply text-sm font-medium text-gray-primary;
+  }
+
+  .form-input {
+    @apply h-12 px-3 py-3 text-white text-base placeholder:text-gray-500 border-gray-600 bg-gray-bg rounded-lg focus:ring-0 focus:border-blue-primary;
+  }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
