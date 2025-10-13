@@ -7,6 +7,11 @@ declare global {
     password: string;
   };
 
+  type SignInFormData = {
+    email: string;
+    password: string;
+  };
+
   type FormInputProps = {
     name: string;
     label: string;

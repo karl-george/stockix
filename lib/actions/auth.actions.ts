@@ -24,7 +24,21 @@ export const signUpWithEmail = async ({
   }
 };
 
-export const signInWithEmail = async () => {};
+export const signInWithEmail = async ({ email, password }: SignInFormData) => {
+  try {
+    const response = await auth.api.signInEmail({
+      body: {
+        email,
+        password,
+      },
+    });
+
+    return { success: true, data: response };
+  } catch (error) {
+    console.error('Sign in failed', error);
+    return { success: false, error: 'Sign in failed' };
+  }
+};
 
 export const signOut = async () => {
   try {
