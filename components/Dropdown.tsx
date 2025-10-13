@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from './ui/button';
 import { LogOut } from 'lucide-react';
 import NavItems from './NavItems';
@@ -31,9 +31,9 @@ const Dropdown = ({ name, email }: { name: string; email: string }) => {
           variant={'ghost'}
         >
           <Avatar className='h-8 w-8'>
-            <AvatarImage src='https://github.com/shadcn.png' />
+            {/* <AvatarImage src='https://github.com/shadcn.png' /> */}
             <AvatarFallback className='text-sm font-bold bg-blue-primary text-gray-primary'>
-              {name}
+              {name.charAt(0)}
             </AvatarFallback>
           </Avatar>
 
