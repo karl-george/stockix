@@ -15,12 +15,7 @@ import NavItems from './NavItems';
 import { signOut } from '@/lib/actions/auth.actions';
 import { useRouter } from 'next/navigation';
 
-const Dropdown = () => {
-  const user = {
-    name: 'John',
-    email: 'test@test.com',
-  };
-
+const Dropdown = ({ name, email }: { name: string; email: string }) => {
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -38,13 +33,13 @@ const Dropdown = () => {
           <Avatar className='h-8 w-8'>
             <AvatarImage src='https://github.com/shadcn.png' />
             <AvatarFallback className='text-sm font-bold bg-blue-primary text-gray-primary'>
-              {user.name[0]}
+              {name}
             </AvatarFallback>
           </Avatar>
 
           <div className='hidden md:flex'>
             <div className='text-base font-medium text-gray-primary'>
-              {user.name}
+              {name}
             </div>
           </div>
         </Button>
@@ -53,10 +48,8 @@ const Dropdown = () => {
       <DropdownMenuContent>
         <DropdownMenuLabel>
           <div>
-            <div className='text-base font-medium'>{user.name}</div>
-            <div className='text-sm font-medium text-gray-primary'>
-              {user.email}
-            </div>
+            <div className='text-base font-medium'>{name}</div>
+            <div className='text-sm font-medium text-gray-primary'>{email}</div>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

@@ -3,9 +3,11 @@ import Link from 'next/link';
 import Dropdown from './Dropdown';
 import NavItems from './NavItems';
 import Search from './Search';
+import { auth } from '@/lib/better-auth/auth';
+import { headers } from 'next/headers';
 
-const Header = () => {
-  const isSignedIn = false;
+const Header = async () => {
+  const session = await auth.api.getSession({ headers: await headers() });
 
   return (
     <header className='sticky top-0 z-50 w-full border-b border-gray-primary'>
@@ -28,8 +30,8 @@ const Header = () => {
           <div className='flex items-center border-r border-gray-primary pr-2.5 '>
             <Search />
           </div>
-          {isSignedIn ? (
-            <Dropdown />
+          {session?.user.id ? (
+            <Dropdown name={session.user.name} email={session.user.email} />
           ) : (
             <div className='flex items-center gap-4'>
               <Link
