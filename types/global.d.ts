@@ -23,6 +23,33 @@ declare global {
     disabled?: boolean | undefined;
     value?: string | undefined;
   };
+
+  type Quote = {
+    c?: number | undefined;
+    dp?: number | undefined;
+  };
+
+  type Profile = {
+    name?: string | undefined;
+    marketCapitalization?: number | undefined;
+    logo?: string | undefined;
+  };
+
+  type Financials = {
+    metric?:
+      | {
+          [key: string]: number;
+        }
+      | undefined;
+  };
+
+  type Stock = {
+    company: string;
+    logo: string;
+    symbol: string;
+    price: number;
+    changePercent: number;
+  };
 }
 
 export {};
