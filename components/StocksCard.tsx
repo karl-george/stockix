@@ -1,9 +1,10 @@
-import { ArrowDownRight, ArrowUpRight, Star } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
+import WatchlistButton from './WatchlistButton';
 
 const StocksCard = ({ company, logo, symbol, price, changePercent }: Stock) => {
   return (
-    <div className='flex flex-col bg-[#1C1D21] p-4 rounded-lg w-72 lg:w-1/5'>
+    <div className='flex flex-col bg-[#1C1D21] p-4 rounded-lg'>
       <div className='flex items-center'>
         <Image
           src={logo}
@@ -19,7 +20,7 @@ const StocksCard = ({ company, logo, symbol, price, changePercent }: Stock) => {
           </div>
         </div>
         <div className='ml-auto'>
-          <Star className='w-5 h-5' />
+          <WatchlistButton />
         </div>
       </div>
       {/* Price Change */}
