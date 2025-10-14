@@ -10,7 +10,7 @@ const Header = async () => {
   const session = await auth.api.getSession({ headers: await headers() });
 
   return (
-    <header className='sticky top-0 z-50 w-full border-b border-gray-primary'>
+    <header className='sticky top-0 z-50 w-full border-b border-gray-primary bg-black-bg'>
       <div className='container flex items-center justify-between py-8'>
         <div className='flex items-center lg:gap-32 md:gap-16'>
           <Link href='/'>
