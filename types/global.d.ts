@@ -45,7 +45,7 @@ declare global {
 
   type Stock = {
     company: string;
-    logo: string;
+    logo?: string | undefined;
     symbol: string;
     price: number;
     changePercent: number;

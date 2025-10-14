@@ -7,7 +7,7 @@ const StocksCard = ({ company, logo, symbol, price, changePercent }: Stock) => {
     <div className='flex flex-col bg-[#1C1D21] p-4 rounded-lg'>
       <div className='flex items-center'>
         <Image
-          src={logo}
+          src={logo || '/logo.png'}
           alt={company}
           width={100}
           height={100}
@@ -27,16 +27,16 @@ const StocksCard = ({ company, logo, symbol, price, changePercent }: Stock) => {
       <div className='flex justify-center items-center mt-12 gap-2 flex-col'>
         <span className='text-xl'>${price}</span>
         <div className='flex items-center gap-1'>
-          {changePercent.toString().charAt(0) === '-' ? (
+          {changePercent?.toString().charAt(0) === '-' ? (
             <div className='flex items-center gap-1'>
               <ArrowDownRight className='w-4 h-4' fill='red' stroke='red' />
-              <span className='text-red-500'>{changePercent.toFixed(2)}%</span>
+              <span className='text-red-500'>{changePercent?.toFixed(2)}%</span>
             </div>
           ) : (
             <div className='flex items-center gap-1'>
               <ArrowUpRight className='w-4 h-4' fill='green' stroke='green' />
               <span className='text-green-500'>
-                {changePercent.toFixed(2)}%
+                {changePercent?.toFixed(2)}%
               </span>
             </div>
           )}

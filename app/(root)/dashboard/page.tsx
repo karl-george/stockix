@@ -1,69 +1,28 @@
-import StocksCard from '@/components/StocksCard';
+'use client';
+
+import StocksCarousel from '@/components/StocksCarousel';
 import TradingViewWidget from '@/components/TradingViewWidget';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from '@/components/ui/carousel';
-import { getStocksDetails } from '@/lib/actions/finnhub.actions';
-import { notFound } from 'next/navigation';
+import { setWidgetConfig } from '@/lib/utils';
+import { useState } from 'react';
 
-const Dashboard = async () => {
-  const stockData = await getStocksDetails('AAPL');
-
-  if (!stockData) return notFound();
+const Dashboard = () => {
+  const [symbol, setSymbol] = useState('AAPL');
 
   return (
     <section className='flex flex-col pt-18 min-h-screen'>
-      {/* Carousel */}
-      <Carousel className='mx-auto w-full'>
-        <CarouselContent>
-          <CarouselItem className='lg:basis-1/4 basis-3xs'>
-            <StocksCard
-              company={stockData.company}
-              logo={stockData.logo!}
-              symbol={stockData.symbol}
-              price={stockData.price}
-              changePercent={stockData.changePercent}
-            />
-          </CarouselItem>
-          <CarouselItem className='lg:basis-1/4 basis-3xs'>
-            <StocksCard
-              company={stockData.company}
-              logo={stockData.logo!}
-              symbol={stockData.symbol}
-              price={stockData.price}
-              changePercent={stockData.changePercent}
-            />
-          </CarouselItem>
-          <CarouselItem className='lg:basis-1/4 basis-3xs'>
-            <StocksCard
-              company={stockData.company}
-              logo={stockData.logo!}
-              symbol={stockData.symbol}
-              price={stockData.price}
-              changePercent={stockData.changePercent}
-            />
-          </CarouselItem>
-          <CarouselItem className='lg:basis-1/4 basis-3xs'>
-            <StocksCard
-              company={stockData.company}
-              logo={stockData.logo!}
-              symbol={stockData.symbol}
-              price={stockData.price}
-              changePercent={stockData.changePercent}
-            />
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
+      <StocksCarousel setSymbol={setSymbol} />
 
       {/* Stock Chart */}
       <div className='mt-12 flex flex-col lg:flex-row'>
         <div className='flex flex-col lg:flex-row w-full'>
           <div className='h-[700px] lg:w-3/4 '>
-            <TradingViewWidget />
+            <TradingViewWidget
+              scriptUrl='https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js'
+              config={setWidgetConfig(symbol)}
+              height={700}
+            />
           </div>
-          <div className='h-[500px] bg-[#1C1D21]'>Watchlist</div>
+          <div className='h-[700px] bg-[#1C1D21]'>Watchlist</div>
         </div>
       </div>
     </section>
