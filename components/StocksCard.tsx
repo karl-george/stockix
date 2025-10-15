@@ -4,7 +4,7 @@ import WatchlistButton from './WatchlistButton';
 
 const StocksCard = ({ company, logo, symbol, price, changePercent }: Stock) => {
   return (
-    <div className='flex flex-col bg-[#1C1D21] p-4 rounded-lg'>
+    <div className='relative bg-gradient-to-br from-[#2d2d2d] to-[#16161a] text-white p-4 rounded-2xl shadow-[inset_1px_1px_2px_rgba(255,255,255,0.1),inset_-1px_-1px_2px_rgba(0,0,0,0.6)] cursor-pointer'>
       <div className='flex items-center'>
         <Image
           src={logo || '/logo.png'}
@@ -16,7 +16,7 @@ const StocksCard = ({ company, logo, symbol, price, changePercent }: Stock) => {
         <div>
           <div className='flex flex-col ml-4'>
             <span className='font-semibold'>{symbol}</span>
-            <span className='text-sm text-[#65676B]'>{company}</span>
+            <span className='text-sm text-[#79797a]'>{company}</span>
           </div>
         </div>
         <div className='ml-auto'>
