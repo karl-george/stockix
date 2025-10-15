@@ -26,10 +26,9 @@ const Header = async () => {
             <NavItems />
           </nav>
         </div>
-        <div className='flex items-center gap-6'>
-          <div className='flex items-center border-r border-gray-primary pr-2.5 '>
-            <Search />
-          </div>
+        <div className='flex items-center justify-between gap-4'>
+          <Search />
+          <div className='h-[24px] text-white bg-white w-[1px] opacity-50' />
           {session?.user.id ? (
             <Dropdown name={session.user.name} email={session.user.email} />
           ) : (
