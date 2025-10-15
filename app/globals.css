@@ -116,8 +116,8 @@
 
 @theme {
   --color-blue-primary: #5771ff;
-  --color-gray-primary: #565656;
-  --color-gray-bg: #1e1e20;
+  --color-gray-primary: #9095a1;
+  --color-gray-bg: #313234;
   --color-green-primary: #2c8654;
   --color-black-bg: #111111;
 }
@@ -149,11 +149,12 @@
   }
 }
 
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+@layer components {
+  .hide-scrollbar {
+    scrollbar-width: 0px;
+    scrollbar-color: transparent;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }

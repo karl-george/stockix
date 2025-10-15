@@ -25,7 +25,7 @@ const Dropdown = ({ name, email }: { name: string; email: string }) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button
           className='flex items-center gap-2 cursor-pointer'
           variant={'ghost'}
