@@ -44,11 +44,42 @@ declare global {
   };
 
   type Stock = {
+    symbol: string;
+    name: string;
+    exchange: string;
+    type: string;
+  };
+
+  type StockData = {
+    symbol: string;
     company: string;
     logo?: string | undefined;
+    price?: number;
+    changePercent?: number;
+    marketCap?: number;
+    peRatio?: number;
+  };
+
+  type User = {
+    id: string;
+    name: string;
+    email: string;
+  };
+
+  type StockWatchlist = Stock & {
+    isWatched: boolean;
+  };
+
+  type FinnhubResult = {
     symbol: string;
-    price: number;
-    changePercent: number;
+    description: string;
+    displaySymbol?: string;
+    type: string;
+  };
+
+  type FinnhubResponse = {
+    count: number;
+    result: FinnhubResult[];
   };
 }
 

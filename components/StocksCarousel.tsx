@@ -16,14 +16,14 @@ const StocksCarousel = ({
 }: {
   setSymbol: (symbol: string) => void;
 }) => {
-  const [stockData, setStockData] = useState<Stock[]>([]);
+  const [stockData, setStockData] = useState<StockData[]>([]);
 
   useEffect(() => {
     const fetchStocks = async () => {
       const allStocks = await Promise.all(
         POP_STOCKS.map((symbol) => getStocksDetails(symbol))
       );
-      setStockData(allStocks as Stock[]);
+      setStockData(allStocks as StockData[]);
     };
     fetchStocks();
   }, []);

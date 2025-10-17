@@ -2,7 +2,13 @@ import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import WatchlistButton from './WatchlistButton';
 
-const StocksCard = ({ company, logo, symbol, price, changePercent }: Stock) => {
+const StocksCard = ({
+  company,
+  logo,
+  symbol,
+  price,
+  changePercent,
+}: StockData) => {
   return (
     <div className='relative bg-gradient-to-br from-[#2d2d2d] to-[#16161a] text-white p-4 rounded-2xl shadow-[inset_1px_1px_2px_rgba(255,255,255,0.1),inset_-1px_-1px_2px_rgba(0,0,0,0.6)] cursor-pointer'>
       <div className='flex items-center'>
