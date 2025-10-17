@@ -1,6 +1,8 @@
 'use client';
 
 import { useDebounce } from '@/hooks/useDebounce';
+import { Loader2, TrendingUp } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import {
   CommandDialog,
@@ -8,16 +10,18 @@ import {
   CommandInput,
   CommandList,
 } from './ui/command';
-import { Loader2, SearchIcon, TrendingUp } from 'lucide-react';
-import Link from 'next/link';
 import WatchlistButton from './WatchlistButton';
-import InputField from './InputField';
+import { searchStocks } from '@/lib/actions/finnhub.actions';
 
-const Search = () => {
+type SearchProps = {
+  defaultStocks: StockWatchlist[];
+};
+
+const Search = ({ defaultStocks }: SearchProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [stocks, setStocks] = useState<Stock[]>([]);
+  const [stocks, setStocks] = useState<Stock[]>(defaultStocks);
 
   const isSearching = !!searchTerm.trim();
   const displayStocks = isSearching ? stocks : stocks?.slice(0, 10);
@@ -37,19 +41,18 @@ const Search = () => {
   const handleSelectStock = () => {
     setOpen(false);
     setSearchTerm('');
-    // !TODO add initial stock
-    setStocks([]);
+    setStocks(defaultStocks);
   };
 
   const handleSearch = async () => {
-    // !TODO add initial stocks
-    if (!searchTerm) return setStocks([]);
+    if (!searchTerm) return setStocks(defaultStocks);
 
     setLoading(true);
     try {
-      // const results = await searchStocks(searchTerm.trim());
-      // setStocks(results);
+      const results = await searchStocks(searchTerm.trim());
+      setStocks(results);
     } catch (error) {
+      console.error('Error handling search', error);
       setStocks([]);
     } finally {
       setLoading(false);
@@ -105,10 +108,10 @@ const Search = () => {
                   >
                     <TrendingUp className='h-4 w-4 text-gray-500' />
                     <div className='flex-1'>
-                      {/* <div className='search-item-name'>{stock.name}</div>
+                      <div className='search-item-name'>{stock.name}</div>
                       <div className='text-sm text-gray-500'>
                         {stock.symbol} | {stock.exchange} | {stock.type}
-                      </div> */}
+                      </div>
                     </div>
                     <WatchlistButton />
                   </Link>

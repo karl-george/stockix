@@ -5,9 +5,12 @@ import NavItems from './NavItems';
 import Search from './Search';
 import { auth } from '@/lib/better-auth/auth';
 import { headers } from 'next/headers';
+import { searchStocks } from '@/lib/actions/finnhub.actions';
 
 const Header = async () => {
   const session = await auth.api.getSession({ headers: await headers() });
+
+  const defaultStocks = await searchStocks();
 
   return (
     <header className='sticky top-0 z-50 w-full border-b border-gray-primary bg-black-bg'>
@@ -27,7 +30,7 @@ const Header = async () => {
           </nav>
         </div>
         <div className='flex items-center justify-between gap-4'>
-          <Search />
+          <Search defaultStocks={defaultStocks} />
           <div className='h-[24px] text-white bg-white w-[1px] opacity-50' />
           {session?.user.id ? (
             <Dropdown name={session.user.name} email={session.user.email} />
