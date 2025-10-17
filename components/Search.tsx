@@ -113,7 +113,10 @@ const Search = ({ defaultStocks }: SearchProps) => {
                         {stock.symbol} | {stock.exchange} | {stock.type}
                       </div>
                     </div>
-                    <WatchlistButton />
+                    <WatchlistButton
+                      symbol={stock.symbol}
+                      company={stock.name}
+                    />
                   </Link>
                 </li>
               ))}
