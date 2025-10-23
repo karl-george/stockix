@@ -43,6 +43,7 @@ const StocksCarousel = ({
               symbol={stock?.symbol}
               price={stock?.price}
               changePercent={stock?.changePercent}
+              isWatched={stock?.isWatched}
             />
           </CarouselItem>
         ))}

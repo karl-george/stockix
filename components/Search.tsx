@@ -65,9 +65,6 @@ const Search = ({ defaultStocks }: SearchProps) => {
     debouncedSearch();
   }, [searchTerm]);
 
-  // !Todo handle watchlist change
-  // const handleWatchlistChange = () => {  }
-
   return (
     <>
       <div
@@ -116,6 +113,7 @@ const Search = ({ defaultStocks }: SearchProps) => {
                     <WatchlistButton
                       symbol={stock.symbol}
                       company={stock.name}
+                      isWatched={stock.isWatched}
                     />
                   </Link>
                 </li>

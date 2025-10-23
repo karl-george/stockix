@@ -72,11 +72,11 @@ export const getWatchlistByEmail = async (email: string): Promise<string[]> => {
 
     const user = await db
       .collection('user')
-      .findOne<{ _id: string; id?: string; email?: string }>({ email });
+      .findOne<{ _id?: unknown; id?: string; email?: string }>({ email });
 
     if (!user) return [];
 
-    const userId = (user.id as string) || String(user.id || '');
+    const userId = (user.id as string) || String(user._id || '');
     if (!userId) return [];
 
     const items = await Watchlist.find({ userId }, { symbol: 1 }).lean();

@@ -48,6 +48,7 @@ declare global {
     name: string;
     exchange: string;
     type: string;
+    isWatched?: boolean;
   };
 
   type StockData = {
@@ -58,6 +59,8 @@ declare global {
     changePercent?: number;
     marketCap?: number;
     peRatio?: number;
+    isWatched?: boolean;
+    onWatchlistChange?: (symbol: string, isAdded: boolean) => void;
   };
 
   type User = {

@@ -6,25 +6,27 @@ import {
   removeFromWatchlist,
 } from '@/lib/actions/watchlist.actions';
 import { Star } from 'lucide-react';
-import { redirect } from 'next/navigation';
 import { useState } from 'react';
+
+interface WatchlistButtonProps {
+  symbol: string;
+  company: string;
+  isWatched?: boolean;
+}
 
 const WatchlistButton = ({
   symbol,
   company,
-}: {
-  symbol: string;
-  company: string;
-}) => {
-  const [added, setAdded] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  isWatched,
+}: WatchlistButtonProps) => {
+  const [added, setAdded] = useState(isWatched);
 
   const toggleWatchlist = async () => {
-    const result = added
-      ? await removeFromWatchlist(symbol)
-      : await addToWatchlist(symbol, company);
-
-    if (result.success === false) redirect('/sign-in');
+    if (added) {
+      await removeFromWatchlist(symbol);
+    } else {
+      await addToWatchlist(symbol, company);
+    }
 
     // !Todo Add a toast
   };
