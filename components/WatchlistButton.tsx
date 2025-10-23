@@ -1,9 +1,12 @@
+'use client';
+
 import { useDebounce } from '@/hooks/useDebounce';
 import {
   addToWatchlist,
   removeFromWatchlist,
 } from '@/lib/actions/watchlist.actions';
 import { Star } from 'lucide-react';
+import { redirect } from 'next/navigation';
 import { useState } from 'react';
 
 const WatchlistButton = ({
@@ -14,11 +17,14 @@ const WatchlistButton = ({
   company: string;
 }) => {
   const [added, setAdded] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const toggleWatchlist = async () => {
     const result = added
       ? await removeFromWatchlist(symbol)
       : await addToWatchlist(symbol, company);
+
+    if (result.success === false) redirect('/sign-in');
 
     // !Todo Add a toast
   };

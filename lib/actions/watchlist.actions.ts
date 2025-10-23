@@ -6,13 +6,15 @@ import { headers } from 'next/headers';
 import { auth } from '../better-auth/auth';
 import { connectToDatabase } from '@/database/mongoose';
 import { getStocksDetails } from './finnhub.actions';
+import { redirect } from 'next/navigation';
 
 export const addToWatchlist = async (symbol: string, company: string) => {
   try {
     const session = await auth.api.getSession({ headers: await headers() });
 
-    if (!session?.user)
-      return { success: false, error: 'Log in to add to watchlist' };
+    if (!session?.user) {
+      return { success: false, error: 'Log in to add stock to watchlist' };
+    }
 
     // Check for stock already in watchlist
     const existingItem = await Watchlist.findOne({
@@ -43,8 +45,7 @@ export const removeFromWatchlist = async (symbol: string) => {
   try {
     const session = await auth.api.getSession({ headers: await headers() });
 
-    if (!session?.user)
-      return { success: false, error: 'Log in to remove from watchlist' };
+    if (!session?.user) redirect('/sign-in');
 
     await Watchlist.deleteOne({
       userId: session.user.id,
