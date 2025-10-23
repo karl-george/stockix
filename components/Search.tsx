@@ -73,37 +73,43 @@ const Search = ({ defaultStocks }: SearchProps) => {
       >
         <span>Search</span>
       </div>
-      <CommandDialog open={open} onOpenChange={setOpen} className=''>
-        <div className=''>
+      <CommandDialog
+        open={open}
+        onOpenChange={setOpen}
+        className='bg-[#2d2d2d] lg:min-w-[600px] fixed top-80 left-1/2  z-50'
+      >
+        <div className='bg-black-bg border-b border-gray-600 relative'>
           <CommandInput
             placeholder='Search stocks'
             value={searchTerm}
             onValueChange={setSearchTerm}
-            className=''
+            className='bg-black-bg border-0 text-white placeholder:text-gray-400 focus:ring-0 text-base h-14'
           />
-          {loading && <Loader2 className='' />}
+          {loading && (
+            <Loader2 className='absolute right-1/2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300 animate-spin' />
+          )}
         </div>
-        <CommandList className=''>
+        <CommandList className='bg-black-bg max-h-[400px]'>
           {loading ? (
-            <CommandEmpty className=''>Loading Stocks...</CommandEmpty>
+            <CommandEmpty className='py-6 text-center text-gray-400'>
+              Loading Stocks...
+            </CommandEmpty>
           ) : displayStocks?.length === 0 ? (
-            <div className=''>
+            <div className='px-5 py-2'>
               {isSearching ? 'No results found' : 'No stocks found'}
             </div>
           ) : (
             <ul>
-              <div className=''>
-                {isSearching ? 'Search Results' : 'Popular Stocks'} (
-                {displayStocks?.length || 0})
-              </div>
               {displayStocks?.map((stock) => (
-                <li key={stock.symbol} className=''>
+                <li
+                  key={stock.symbol}
+                  className='rounded-none my-3 px-2 w-full data-[selected=true]:bg-gray-600'
+                >
                   <Link
                     href={`/stocks/${stock.symbol}`}
                     onClick={handleSelectStock}
-                    className=''
+                    className='px-2 w-full cursor-pointer border-b border-gray-600 last:border-b-0 flex items-center gap-3'
                   >
-                    <TrendingUp className='h-4 w-4 text-gray-500' />
                     <div className='flex-1'>
                       <div className='search-item-name'>{stock.name}</div>
                       <div className='text-sm text-gray-500'>
