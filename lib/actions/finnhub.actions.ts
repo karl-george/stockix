@@ -2,6 +2,9 @@
 
 import { cache } from 'react';
 import { POPULAR_STOCK_SYMBOLS } from '../contants';
+import { getWatchlistByEmail } from './watchlist.actions';
+import { auth } from '../better-auth/auth';
+import { headers } from 'next/headers';
 
 const FINNHUB_BASE_URL = 'https://finnhub.io/api/v1';
 const NEXT_PUBLIC_FINNHUB_API_KEY = process.env.NEXT_PUBLIC_FINNHUB_API_KEY;
@@ -48,6 +51,10 @@ export const getStocksDetails = cache(async (symbol: string) => {
       ),
     ]);
 
+    const session = await auth.api.getSession({ headers: await headers() });
+
+    const userWatchlist = await getWatchlistByEmail(session?.user.email || '');
+
     // Type cast for safety
     const quoteData = quote as Quote;
     const profileData = profile as Profile;
@@ -67,6 +74,7 @@ export const getStocksDetails = cache(async (symbol: string) => {
       changePercent,
       marketCap: profileData?.marketCapitalization || 0,
       logo: profileData?.logo,
+      isWatched: userWatchlist.includes(cleanedSymbol),
     };
   } catch (error) {
     console.log(error);
@@ -76,7 +84,11 @@ export const getStocksDetails = cache(async (symbol: string) => {
 export const searchStocks = cache(
   async (searchTerm?: string): Promise<StockWatchlist[]> => {
     try {
-      // !Todo get users watchlisted stocks
+      const session = await auth.api.getSession({ headers: await headers() });
+
+      const userWatchlist = await getWatchlistByEmail(
+        session?.user.email || ''
+      );
 
       const token = NEXT_PUBLIC_FINNHUB_API_KEY;
 
@@ -159,8 +171,7 @@ export const searchStocks = cache(
             name,
             exchange,
             type,
-            // !Todo
-            isWatched: false,
+            isWatched: userWatchlist.includes(r.symbol.toUpperCase()),
           };
           return item;
         })

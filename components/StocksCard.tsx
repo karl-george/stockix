@@ -8,6 +8,7 @@ const StocksCard = ({
   symbol,
   price,
   changePercent,
+  isWatched,
 }: StockData) => {
   return (
     <div className='relative bg-gradient-to-br from-[#2d2d2d] to-[#16161a] text-white p-4 rounded-2xl shadow-[inset_1px_1px_2px_rgba(255,255,255,0.1),inset_-1px_-1px_2px_rgba(0,0,0,0.6)] cursor-pointer'>
@@ -26,7 +27,11 @@ const StocksCard = ({
           </div>
         </div>
         <div className='ml-auto'>
-          <WatchlistButton />
+          <WatchlistButton
+            symbol={symbol}
+            company={company}
+            isWatched={isWatched}
+          />
         </div>
       </div>
       {/* Price Change */}
