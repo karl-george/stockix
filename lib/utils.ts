@@ -45,3 +45,13 @@ export const setWidgetConfig = (symbol: string) => {
     hideSymbolLogo: false,
   };
 };
+
+export const setDetailsWidget = (symbol: string) => {
+  return {
+    symbol: `NASDAQ:${symbol}`,
+    colorTheme: 'dark',
+    isTransparent: false,
+    locale: 'en',
+    width: '100%',
+  };
+};
