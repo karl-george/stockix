@@ -9,7 +9,6 @@ import {
   setTechAnalysisWidget,
   setWidgetConfig,
 } from '@/lib/utils';
-import { set } from 'mongoose';
 import { notFound } from 'next/navigation';
 
 const StockDetails = async ({
@@ -29,7 +28,7 @@ const StockDetails = async ({
 
   return (
     <div className='flex min-h-screen py-10'>
-      <section className='grid grid-cols-1 lg:grid-cols-3  gap-8 w-full'>
+      <section className='grid grid-cols-1 lg:grid-cols-3 gap-8 w-full'>
         {/* Left */}
         <div className='flex flex-col gap-5 lg:col-span-2'>
           <TradingViewWidget
