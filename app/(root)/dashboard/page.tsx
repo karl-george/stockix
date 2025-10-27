@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [symbol, setSymbol] = useState('AAPL');
 
   return (
-    <section className='flex flex-col pt-18 min-h-screen'>
+    <section className='flex flex-col py-10 min-h-screen'>
       <StocksCarousel setSymbol={setSymbol} />
 
       {/* Stock Chart */}

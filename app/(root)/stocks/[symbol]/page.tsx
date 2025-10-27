@@ -9,7 +9,6 @@ import {
   setTechAnalysisWidget,
   setWidgetConfig,
 } from '@/lib/utils';
-import { set } from 'mongoose';
 import { notFound } from 'next/navigation';
 
 const StockDetails = async ({
