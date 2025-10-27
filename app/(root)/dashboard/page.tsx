@@ -2,6 +2,7 @@
 
 import StocksCarousel from '@/components/StocksCarousel';
 import TradingViewWidget from '@/components/TradingViewWidget';
+import WatchlistWidget from '@/components/WatchlistWidget';
 import { setWidgetConfig } from '@/lib/utils';
 import { useState } from 'react';
 
@@ -22,8 +23,8 @@ const Dashboard = () => {
               height={850}
             />
           </div>
-          <div className='h-[850px] bg-[#1C1D21] rounded-lg lg:w-1/4'>
-            Watchlist
+          <div className='h-full lg:h-[850px] bg-[#1C1D21] rounded-lg lg:w-1/4'>
+            <WatchlistWidget />
           </div>
         </div>
       </div>
