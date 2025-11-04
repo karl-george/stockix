@@ -107,8 +107,7 @@ export const getUserWatchlist = async () => {
 export const getWatchlistData = async () => {
   try {
     const session = await auth.api.getSession({ headers: await headers() });
-    if (!session?.user)
-      return { success: false, error: 'Log in to get watchlist' };
+    if (!session?.user) return [];
 
     const watchlist = await Watchlist.find({ userId: session.user.id })
       .sort({ createdAt: -1 })
