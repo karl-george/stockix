@@ -4,7 +4,7 @@ import {
   HEATMAP_CONFIG,
   MARKET_DATA_CONFIG,
   NEWS_DATA_CONFIG,
-} from '@/lib/contants';
+} from '@/lib/constants';
 
 const Market = () => {
   return (

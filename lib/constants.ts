@@ -231,3 +231,13 @@ export const POPULAR_STOCK_SYMBOLS = [
   'GRAB',
   'SE',
 ];
+
+export const WATCHLIST_TABLE_HEADER = [
+  'Company',
+  'Symbol',
+  'Price',
+  'Change',
+  'Market Cap',
+  'P/E Ratio',
+  'Watch',
+];

@@ -1,7 +1,7 @@
 'use server';
 
 import { cache } from 'react';
-import { POPULAR_STOCK_SYMBOLS } from '../contants';
+import { POPULAR_STOCK_SYMBOLS } from '../constants';
 import { getWatchlistByEmail } from './watchlist.actions';
 import { auth } from '../better-auth/auth';
 import { headers } from 'next/headers';
