@@ -7,6 +7,7 @@ import {
 } from '@/lib/actions/watchlist.actions';
 import { Star } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 interface WatchlistButtonProps {
   symbol: string;
@@ -22,13 +23,17 @@ const WatchlistButton = ({
   const [added, setAdded] = useState(isWatched);
 
   const toggleWatchlist = async () => {
-    if (added) {
-      await removeFromWatchlist(symbol);
-    } else {
-      await addToWatchlist(symbol, company);
-    }
+    const result = added
+      ? await removeFromWatchlist(symbol)
+      : await addToWatchlist(symbol, company);
 
-    // !Todo Add a toast
+    if (result.success) {
+      toast.success(added ? 'Removed from watchlist' : 'Added to watchlist', {
+        description: `${company} ${
+          added ? 'removed from' : 'added to'
+        } your watchlist`,
+      });
+    }
   };
 
   const debouncedToggle = useDebounce(toggleWatchlist, 400);
