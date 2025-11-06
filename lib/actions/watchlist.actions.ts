@@ -128,8 +128,10 @@ export const getWatchlistData = async () => {
           company: stockData.company,
           symbol: item.symbol,
           logo: stockData.logo,
-          price: stockData.currentPrice,
+          price: stockData.price,
+          priceFormatted: stockData.priceFormatted,
           changePercent: stockData.changePercent,
+          changePercentFormatted: stockData.changePercentFormatted,
           marketCap: stockData.marketCap,
           peRatio: stockData.peRatio,
         };

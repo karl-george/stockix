@@ -5,6 +5,11 @@ import { POPULAR_STOCK_SYMBOLS } from '../constants';
 import { getWatchlistByEmail } from './watchlist.actions';
 import { auth } from '../better-auth/auth';
 import { headers } from 'next/headers';
+import {
+  formatChangePercent,
+  formatMarketCapValue,
+  formatPrice,
+} from '../utils';
 
 const FINNHUB_BASE_URL = 'https://finnhub.io/api/v1';
 const NEXT_PUBLIC_FINNHUB_API_KEY = process.env.NEXT_PUBLIC_FINNHUB_API_KEY;
@@ -70,9 +75,11 @@ export const getStocksDetails = cache(async (symbol: string) => {
       symbol: cleanedSymbol,
       company: profileData.name,
       price: quoteData.c,
-      peRatio: peRatio?.toFixed(2),
+      peRatio: peRatio?.toFixed(1),
       changePercent,
-      marketCap: profileData?.marketCapitalization || 0,
+      changePercentFormatted: formatChangePercent(changePercent),
+      priceFormatted: formatPrice(quoteData.c),
+      marketCap: formatMarketCapValue(profileData?.marketCapitalization || 0),
       logo: profileData?.logo,
       isWatched: userWatchlist.includes(cleanedSymbol),
     };

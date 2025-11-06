@@ -1,7 +1,7 @@
 import { getWatchlistData } from '@/lib/actions/watchlist.actions';
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import ChangePercentArrows from './ChangePercentArrows';
 import WatchlistButton from './WatchlistButton';
 
 const WatchlistWidget = () => {
@@ -43,34 +43,7 @@ const WatchlistWidget = () => {
             </div>
 
             <div>
-              {/*
-            //!todo Extract into a component and refactor stock card too
-            */}
-              <span className='text-[#79797a]'>
-                {item.changePercent?.toString().charAt(0) === '-' ? (
-                  <div className='flex items-center gap-1'>
-                    <ArrowDownRight
-                      className='w-4 h-4'
-                      fill='red'
-                      stroke='red'
-                    />
-                    <span className='text-red-500'>
-                      {item.changePercent?.toFixed(2)}%
-                    </span>
-                  </div>
-                ) : (
-                  <div className='flex items-center gap-1'>
-                    <ArrowUpRight
-                      className='w-4 h-4'
-                      fill='green'
-                      stroke='green'
-                    />
-                    <span className='text-green-500'>
-                      {item.changePercent?.toFixed(2)}%
-                    </span>
-                  </div>
-                )}
-              </span>
+              <ChangePercentArrows changePercent={item.changePercent} />
             </div>
 
             <div>

@@ -1,5 +1,5 @@
 export const NAV_LINKS = [
-  { label: 'Dashboard', href: '/dashboard' },
+  { label: 'Dashboard', href: '/' },
   { label: 'Market', href: '/market' },
   { label: 'Watchlist', href: '/watchlist' },
 ];

@@ -3,7 +3,7 @@
 import {
   Table,
   TableBody,
-  TableCell, 
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -11,6 +11,7 @@ import {
 import { WATCHLIST_TABLE_HEADER } from '@/lib/constants';
 import { useRouter } from 'next/navigation';
 import WatchlistButton from './WatchlistButton';
+import { changePercentColor, cn } from '@/lib/utils';
 
 export function WatchlistTable({ watchlist }: { watchlist: StockData[] }) {
   const router = useRouter();
@@ -41,10 +42,15 @@ export function WatchlistTable({ watchlist }: { watchlist: StockData[] }) {
                 {item.symbol}
               </TableCell>
               <TableCell className='font-medium text-base'>
-                {item.price || '—'}
+                {item.priceFormatted || '—'}
               </TableCell>
-              <TableCell className={'font-medium text-base'}>
-                {item.changePercent || '—'}
+              <TableCell
+                className={cn(
+                  'font-medium text-base',
+                  changePercentColor(item.changePercent)
+                )}
+              >
+                {item.changePercentFormatted || '—'}
               </TableCell>
               <TableCell className='font-medium text-base'>
                 {item.marketCap || '—'}

@@ -121,3 +121,35 @@ export const setProfileWidget = (symbol: string) => {
     height: 400,
   };
 };
+
+export function formatMarketCapValue(marketCapUsd: number): string {
+  if (!Number.isFinite(marketCapUsd) || marketCapUsd <= 0) return 'N/A';
+
+  if (marketCapUsd >= 1e12) return `$${(marketCapUsd / 1e12).toFixed(2)}T`; // Trillions
+  if (marketCapUsd >= 1e9) return `$${(marketCapUsd / 1e9).toFixed(2)}B`; // Billions
+  if (marketCapUsd >= 1e6) return `$${(marketCapUsd / 1e6).toFixed(2)}M`; // Millions
+  return `$${marketCapUsd.toFixed(2)}`; // Below one million, show full USD amount
+}
+
+export const formatPrice = (price: number) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  }).format(price);
+};
+
+export const formatChangePercent = (changePercent: number) => {
+  if (changePercent > 0) {
+    return `+${changePercent.toFixed(2)}%`;
+  } else if (changePercent < 0) {
+    return `-${changePercent.toFixed(2)}%`;
+  } else {
+    return '0.00%';
+  }
+};
+
+export const changePercentColor = (changePercent?: number) => {
+  if (!changePercent) return 'text-gray-400';
+  return changePercent > 0 ? 'text-green-500' : 'text-red-500';
+};
