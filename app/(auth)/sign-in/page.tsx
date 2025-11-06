@@ -3,6 +3,8 @@
 import InputField from '@/components/InputField';
 import { Button } from '@/components/ui/button';
 import { signInWithEmail } from '@/lib/actions/auth.actions';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
@@ -32,10 +34,16 @@ const SignIn = () => {
   };
 
   return (
-    <>
-      <h1>Sign In</h1>
-
-      <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
+    <div className='flex flex-col items-center justify-center'>
+      <Image
+        src='/logo.png'
+        alt='Logo'
+        width={100}
+        height={100}
+        className='h-12 w-auto rounded-full mt-4'
+      />
+      <h2 className='text-3xl font-semibold my-10'>WELCOME BACK!</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-5 w-full px-4'>
         {/* Email */}
         <InputField
           name='email'
@@ -62,11 +70,24 @@ const SignIn = () => {
           disabled={isSubmitting}
         />
         {/* Submit Button */}
-        <Button type='submit' disabled={isSubmitting}>
-          {isSubmitting ? 'Signing in...' : 'Sign In'}
-        </Button>
+        <div className='flex items-center justify-center'>
+          <Button
+            type='submit'
+            disabled={isSubmitting}
+            className='w-[60%] py-6 bg-blue-primary text-white mt-5 rounded-full cursor-pointer hover:bg-blue-primary/80'
+          >
+            {isSubmitting ? 'Signing in...' : 'SIGN IN'}
+          </Button>
+        </div>
+
+        <div className='mt-6 flex items-center justify-center gap-1 flex-col'>
+          <p>Don&apos;t have an account?</p>
+          <Link href='/sign-up' className='text-blue-primary'>
+            Sign Up
+          </Link>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 
