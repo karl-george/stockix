@@ -1,5 +1,5 @@
 export const NAV_LINKS = [
-  { label: 'Dashboard', href: '/dashboard' },
+  { label: 'Dashboard', href: '/' },
   { label: 'Market', href: '/market' },
   { label: 'Watchlist', href: '/watchlist' },
 ];
@@ -230,4 +230,14 @@ export const POPULAR_STOCK_SYMBOLS = [
   'DIDI',
   'GRAB',
   'SE',
+];
+
+export const WATCHLIST_TABLE_HEADER = [
+  'Company',
+  'Symbol',
+  'Price',
+  'Change',
+  'Market Cap',
+  'P/E Ratio',
+  'Watch',
 ];

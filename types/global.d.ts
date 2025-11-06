@@ -56,7 +56,9 @@ declare global {
     company: string;
     logo?: string | undefined;
     price?: number;
+    priceFormatted?: number;
     changePercent?: number;
+    changePercentFormatted?: number;
     marketCap?: number;
     peRatio?: number;
     isWatched?: boolean;

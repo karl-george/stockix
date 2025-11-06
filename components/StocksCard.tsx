@@ -1,5 +1,5 @@
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
+import ChangePercentArrows from './ChangePercentArrows';
 import WatchlistButton from './WatchlistButton';
 
 const StocksCard = ({
@@ -36,22 +36,8 @@ const StocksCard = ({
       </div>
       {/* Price Change */}
       <div className='flex justify-center items-center mt-12 gap-2 flex-col'>
-        <span className='text-xl'>${price}</span>
-        <div className='flex items-center gap-1'>
-          {changePercent?.toString().charAt(0) === '-' ? (
-            <div className='flex items-center gap-1'>
-              <ArrowDownRight className='w-4 h-4' fill='red' stroke='red' />
-              <span className='text-red-500'>{changePercent?.toFixed(2)}%</span>
-            </div>
-          ) : (
-            <div className='flex items-center gap-1'>
-              <ArrowUpRight className='w-4 h-4' fill='green' stroke='green' />
-              <span className='text-green-500'>
-                {changePercent?.toFixed(2)}%
-              </span>
-            </div>
-          )}
-        </div>
+        <span className='text-xl'>{price}</span>
+        <ChangePercentArrows changePercent={changePercent} />
       </div>
     </div>
   );

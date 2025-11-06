@@ -46,8 +46,9 @@ const WatchlistButton = ({
     <button
       onClick={handleClick}
       aria-label={added ? 'Remove from watchlist' : 'Add to watchlist'}
+      className='cursor-pointer'
     >
-      <Star className='w-5 h-5' fill={added ? 'currentColor' : 'none'} />
+      <Star fill={added ? 'currentColor' : 'none'} />
     </button>
   );
 };
