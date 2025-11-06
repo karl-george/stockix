@@ -12,6 +12,7 @@ import { WATCHLIST_TABLE_HEADER } from '@/lib/constants';
 import { useRouter } from 'next/navigation';
 import WatchlistButton from './WatchlistButton';
 import { changePercentColor, cn } from '@/lib/utils';
+import Image from 'next/image';
 
 export function WatchlistTable({ watchlist }: { watchlist: StockData[] }) {
   const router = useRouter();
@@ -36,7 +37,16 @@ export function WatchlistTable({ watchlist }: { watchlist: StockData[] }) {
               }
             >
               <TableCell className='pl-4 font-medium text-base'>
-                {item.company}
+                <div className='flex items-center gap-2'>
+                  <Image
+                    src={item.logo || '/logo.png'}
+                    alt={item.company}
+                    width={50}
+                    height={50}
+                    className='h-5 w-auto rounded-full'
+                  />
+                  {item.company}
+                </div>
               </TableCell>
               <TableCell className='font-medium text-base'>
                 {item.symbol}
